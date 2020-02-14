@@ -1,10 +1,22 @@
 import Vue from 'vue'
 import App from './App.vue'
-import VueRouter from 'vue-router'
+import { router } from './router'
+import { store } from './store'
+import VueTimeago from 'vue-timeago'
+import VueCarousel from 'vue-carousel'
+import { BootstrapVue } from 'bootstrap-vue'
 
-Vue.use(VueRouter)
+Vue.use(VueTimeago, {
+	name: 'Timeago',
+	locale: 'en',
+});
+Vue.use(VueCarousel);
+Vue.use(BootstrapVue);
 
 new Vue({
 	el: '#app',
-	render: h => h(App)
+	router,
+	store,
+	render: h => h(App),
 });
+

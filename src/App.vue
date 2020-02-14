@@ -1,6 +1,7 @@
 <template>
 	<div>
 		<tawk-header></tawk-header>
+		<router-view />
 	</div>
 </template>
 
