@@ -7,9 +7,9 @@
 
 		<section class="container">
 			<div class="input-group mb-5 mt-3">
-				<input type="text" class="form-control" placeholder="Search for answers" aria-label="Search for answers" aria-describedby="Search for answers">
+				<input type="text" class="form-control" placeholder="Search for answers" aria-label="Search for answers" aria-describedby="Search for answers" v-model="input">
 				<div class="input-group-append">
-					<button class="btn btn-outline-secondary" type="button" id="button-addon2"><i class="fas fa-search"></i></button>
+					<button class="btn btn-outline-secondary" type="button" id="button-addon2" @click="onSearch()"><i class="fas fa-search"></i></button>
 				</div>
 			</div>
 		</section>
@@ -17,8 +17,27 @@
 </template>
 
 <script>
-export default {
-}
+	import { mapActions } from 'vuex';
+
+	import {
+		SEARCH_ARTICLES,
+	} from "../store/actionTypes";
+
+	export default {
+		data: () => ({
+			input: null,
+		}),
+
+		methods: {
+			...mapActions([
+				SEARCH_ARTICLES,
+			]),
+
+			onSearch () {
+				this.$router.push({ path: 'result', query: { text: this.input } });
+			},
+		},
+	}
 </script>
 
 <style lang="scss" scoped>

@@ -5,6 +5,14 @@ import { store } from './store'
 import VueTimeago from 'vue-timeago'
 import VueCarousel from 'vue-carousel'
 import { BootstrapVue } from 'bootstrap-vue'
+import Router from 'vue-router';
+
+const originalPush = Router.prototype.push;
+Router.prototype.push = function push(location) {
+	return originalPush.call(this, location).catch(err => err)
+};
+
+Vue.use(Router);
 
 Vue.use(VueTimeago, {
 	name: 'Timeago',
